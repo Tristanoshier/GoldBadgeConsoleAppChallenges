@@ -14,6 +14,7 @@ namespace CafeConsole
 
         public void Run()
         {
+            SeedMenuData();
             Menu();
         }
 
@@ -130,8 +131,15 @@ namespace CafeConsole
 
         }
 
-        public void SeedMenuData()
+        private void SeedMenuData()
         {
+            var itemOne = new Menu(1, "Coffee", "Our house made coffee", "coffee beans, water", 3.99);
+            var itemTwo = new Menu(2, "Komodo Club", "Our house club sandwich", "Tomato, Onion, Turkey, Mayo, Lettuce", 9.99);
+            var itemThree = new Menu(3, "Komodo pizza", "A personal pizza serves 1-2", "Pepperoni, Cheese, bread", 8.99);
+
+            _menuRepo.AddMenuItem(itemOne);
+            _menuRepo.AddMenuItem(itemTwo);
+            _menuRepo.AddMenuItem(itemThree);
 
         }
     }
