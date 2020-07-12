@@ -62,9 +62,9 @@ namespace CafeConsole
             Console.Clear();
             var item = new Menu();
 
-            Console.WriteLine("Enter a Menu item number:");
+            Console.WriteLine("Enter a menu item number:");
             item.MealNumber = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter the name of the menumenu item:");
+            Console.WriteLine("Enter the name of the menu item:");
             item.MealName = Console.ReadLine();
             Console.WriteLine("Enter a description of the menu item:");
             item.Description = Console.ReadLine();
@@ -78,6 +78,7 @@ namespace CafeConsole
 
         private void DeleteMenuItem()
         {
+            Console.Clear();
             Console.WriteLine("Which menu item would you like to remove?");
             List<Menu> menuItems = _menuRepo.GetAllMenuItems();
 
