@@ -39,7 +39,7 @@ namespace CafeConsole
                         AddMenuItem();
                         break;
                     case "2":
-                        //DeleteMenuItem();
+                        DeleteMenuItem();
                         break;
                     case "3":
                         //SeeAllMenuItems();
@@ -73,6 +73,39 @@ namespace CafeConsole
             item.Price = double.Parse(Console.ReadLine());
 
             _menuRepo.AddMenuItem(item);
+        }
+
+        private void DeleteMenuItem()
+        {
+            Console.WriteLine("Which menu item would you like to remove?");
+            List<Menu> menuItems = _menuRepo.GetAllMenuItems();
+
+            int count = 0;
+            foreach(Menu item in menuItems)
+            {
+                count++;
+                Console.WriteLine($"{item.MealNumber}.) {item.MealName}");
+            }
+
+            int targetItemId = int.Parse(Console.ReadLine());
+            int targetIndex = targetItemId - 1;
+            if(targetIndex >= 0 && targetIndex < menuItems.Count)
+            {
+                Menu item = menuItems[targetIndex];
+                if(_menuRepo.DeleteMenuItem(item))
+                {
+                    Console.WriteLine($"{item.MealName} successfully deleted.");
+                }
+                else
+                {
+                    Console.WriteLine($"{item.MealName} was unable to be deleted. Try again.");
+                }
+            } else
+            {
+                Console.WriteLine("Menu item ID does not exist");
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
 
         public void SeedMenuData()
