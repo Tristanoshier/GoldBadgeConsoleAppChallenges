@@ -10,6 +10,7 @@ namespace CafeConsole
 {
     public class CafeUI
     {
+        private readonly MenuRepository _menuRepo = new MenuRepository();
 
         public void Run()
         {
@@ -35,13 +36,13 @@ namespace CafeConsole
                 switch (userInput)
                 {
                     case "1":
-                        //AddMenuItem()
+                        AddMenuItem();
                         break;
                     case "2":
-                        //DeleteMenuItem()
+                        //DeleteMenuItem();
                         break;
                     case "3":
-                        //SeeAllMenuItems()
+                        //SeeAllMenuItems();
                         break;
                     case "4":
                         continueToRun = false;
@@ -60,9 +61,18 @@ namespace CafeConsole
             Console.Clear();
             var item = new Menu();
 
+            Console.WriteLine("Enter a Menu item number:");
+            item.MealNumber = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the name of the menumenu item:");
+            item.MealName = Console.ReadLine();
+            Console.WriteLine("Enter a description of the menu item:");
+            item.Description = Console.ReadLine();
+            Console.WriteLine("Enter the ingredients of the menu item:");
+            item.Ingredients = Console.ReadLine();
+            Console.WriteLine("Enter the price of the menu item:");
+            item.Price = double.Parse(Console.ReadLine());
 
-            Console.WriteLine();
-
+            _menuRepo.AddMenuItem(item);
         }
 
         public void SeedMenuData()
