@@ -135,7 +135,6 @@ namespace CompanyOutingsConsole
 
         private void SeeSpecificOutingTypeCost()
         {
-            List<Outing> outings = _outingRepo.GetAllOutings();
             Console.WriteLine
                 (
                     "Please select an outing type\n" +
@@ -145,30 +144,30 @@ namespace CompanyOutingsConsole
                     "4.) Concert"
                 );
             string typeInput = Console.ReadLine();
-            string userChoice;
+            EventType userChoice;
             switch (typeInput)
             {
                 case "1":
-                    userChoice = "golf";
+                    userChoice = EventType.Golf;
                     break;
                 case "2":
-                    userChoice = "bowling";
+                    userChoice = EventType.Bowling;
                     break;
                 case "3":
-                    userChoice = "amusementpark";
+                    userChoice = EventType.AmusementPark;
                     break;
                 case "4":
-                    userChoice = "concert";
+                    userChoice = EventType.Concert;
                     break;
                 default:
-                    userChoice = null;
+                    userChoice = EventType.Nothing;
                     break;
             }
-
+            List<Outing> outingsOfType = _outingRepo.GetAllOutingsByType(userChoice);
             double total = 0;
-            foreach (Outing outing in outings)
+            foreach (Outing outing in outingsOfType)
             {
-                if(outing.TypeOfEvent.ToString().ToLower() == userChoice)
+                if(outing.TypeOfEvent == userChoice)
                 {
                     total += outing.TotalCostOfEvent;
                 }

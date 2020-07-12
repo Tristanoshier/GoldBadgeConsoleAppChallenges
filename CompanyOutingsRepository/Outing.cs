@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompanyOutingsRepository
 {
-    public enum EventType { Golf, Bowling, AmusementPark, Concert }
+    public enum EventType { Golf, Bowling, AmusementPark, Concert, Nothing }
     public class Outing
     {
         public Outing()

@@ -26,12 +26,12 @@ namespace CompanyOutingsRepository
         }
 
         //GET OUTINGS BY TYPE
-        public List<Outing> GetAllOutingsByType(string outingType)
+        public List<Outing> GetAllOutingsByType(EventType outingType)
         {
             List<Outing> specificTypeList = new List<Outing>();
             foreach(Outing outing in _outingDirectory)
             {
-                if(outing.TypeOfEvent.ToString().ToLower() == outingType.ToLower())
+                if(outing.TypeOfEvent == outingType)
                 {
                     specificTypeList.Add(outing);
                 }

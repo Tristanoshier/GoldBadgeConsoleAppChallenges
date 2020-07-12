@@ -31,5 +31,11 @@ namespace CompanyOutingsTests
 
             Assert.IsTrue(outingAdded);
         }
+
+        [TestMethod]
+        public void GetAllOutingsByType_ShouldReturnCorrectList()
+        {
+
+        }
     }
 }
