@@ -13,6 +13,7 @@ namespace CompanyOutingsConsole
 
         public void Run()
         {
+            SeedOutingData();
             Menu();
         }
 
@@ -177,6 +178,15 @@ namespace CompanyOutingsConsole
             Console.ReadKey();
         }
 
-        
+        private void SeedOutingData()
+        {
+            var outingOne = new Outing(5, "02-03-2005", 8.99, EventType.Bowling);
+            var outingTwo = new Outing(6, "05-08-2019", 11.99, EventType.AmusementPark);
+            var outingThree = new Outing(8, "04-06-2016", 5.99, EventType.Concert);
+
+            _outingRepo.AddOuting(outingOne);
+            _outingRepo.AddOuting(outingTwo);
+            _outingRepo.AddOuting(outingThree);
+        }
     }
 }

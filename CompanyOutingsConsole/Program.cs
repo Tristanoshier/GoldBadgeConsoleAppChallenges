@@ -10,6 +10,8 @@ namespace CompanyOutingsConsole
     {
         static void Main(string[] args)
         {
+            OutingsUI ui = new OutingsUI();
+            ui.Run();
         }
     }
 }
