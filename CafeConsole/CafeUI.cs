@@ -49,7 +49,7 @@ namespace CafeConsole
                         continueToRun = false;
                         break;
                     default:
-                        Console.WriteLine("Please enter and option between 1 and 4. \n" +
+                        Console.WriteLine("Please enter an option between 1 and 4. \n" +
                             "Press any key to continue...");
                         Console.ReadKey();
                         break;
