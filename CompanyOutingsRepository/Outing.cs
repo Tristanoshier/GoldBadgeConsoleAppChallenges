@@ -13,7 +13,7 @@ namespace CompanyOutingsRepository
         {
         }
 
-        public Outing(int numOfPeopleAttended, DateTime date, double costPerPerson, EventType typeOfEvent)
+        public Outing(int numOfPeopleAttended, string date, double costPerPerson, EventType typeOfEvent)
         {
             NumOfPeopleAttended = numOfPeopleAttended;
             Date = date;
@@ -22,7 +22,7 @@ namespace CompanyOutingsRepository
         }
 
         public int NumOfPeopleAttended { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public double CostPerPerson { get; set; }
         public EventType TypeOfEvent { get; set; }
         public double TotalCostOfEvent
