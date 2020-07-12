@@ -9,7 +9,7 @@ namespace CafeRepo
     public class Menu
     {
         public Menu() { }
-        public Menu(int mealNumber, string mealName, string description, List<string> ingredients, double price)
+        public Menu(int mealNumber, string mealName, string description, string ingredients, double price)
         {
             MealNumber = mealNumber;
             MealName = mealName;
@@ -21,7 +21,7 @@ namespace CafeRepo
         public int MealNumber { get; set; }
         public string MealName { get; set; }
         public string Description { get; set; }
-        public List<string> Ingredients { get; set; }
+        public string Ingredients { get; set; }
         public double Price { get; set; }
     }
 }
