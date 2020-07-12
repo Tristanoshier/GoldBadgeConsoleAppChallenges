@@ -42,7 +42,7 @@ namespace CafeConsole
                         DeleteMenuItem();
                         break;
                     case "3":
-                        //SeeAllMenuItems();
+                        SeeAllMenuItems();
                         break;
                     case "4":
                         continueToRun = false;
@@ -106,6 +106,28 @@ namespace CafeConsole
             }
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
+        }
+
+        private void SeeAllMenuItems()
+        {
+            Console.Clear();
+            List<Menu> menuItems = _menuRepo.GetAllMenuItems();
+
+            foreach(Menu item in menuItems)
+            {
+                Console.WriteLine
+                    (
+                        $"-----------------------\n" +
+                        $"Number: {item.MealNumber}\n" +
+                        $"Name: {item.MealName}\n" +
+                        $"Description: {item.Description}\n" +
+                        $"Ingredients: {item.Ingredients}\n" +
+                        $"Price: ${item.Price}"
+                    );
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+
         }
 
         public void SeedMenuData()
