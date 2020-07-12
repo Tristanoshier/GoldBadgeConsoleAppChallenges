@@ -20,5 +20,16 @@ namespace CompanyOutingsTests
 
             Assert.IsTrue(directoryContainsOuting);
         }
+
+        [TestMethod]
+        public void AddOuting_ShouldReturnCorrectBool()
+        {
+            Outing outing = new Outing();
+            OutingRepository outingRepo = new OutingRepository();
+
+            bool outingAdded = outingRepo.AddOuting(outing);
+
+            Assert.IsTrue(outingAdded);
+        }
     }
 }
