@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GreetingRepo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace GreetingConsole
     {
         static void Main(string[] args)
         {
+            GreetingUI ui = new GreetingUI();
+            ui.Run();
         }
     }
 }

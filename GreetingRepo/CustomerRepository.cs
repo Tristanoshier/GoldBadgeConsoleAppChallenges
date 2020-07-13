@@ -27,10 +27,10 @@ namespace GreetingRepo
         }
 
         //UPDATE
-        public bool UpdateCustomerInfo(Customer customer)
-        {
+        //public bool UpdateCustomerInfo(Customer customer)
+        //{
 
-        }
+        //}
 
         //DELETE
         public bool DeleteMenuItem(Customer customer)

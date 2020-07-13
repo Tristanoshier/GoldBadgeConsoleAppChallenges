@@ -140,8 +140,6 @@ namespace CafeConsole
 
             _menuRepo.AddMenuItem(itemOne);
             _menuRepo.AddMenuItem(itemTwo);
-            _menuRepo.AddMenuItem(itemThree);
-
-        }
+            _menuRepo.AddMenuItem(itemThree);        }
     }
 }
