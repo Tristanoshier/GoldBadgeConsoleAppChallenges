@@ -27,13 +27,23 @@ namespace GreetingRepo
         }
 
         //UPDATE
-        //public bool UpdateCustomerInfo(Customer customer)
-        //{
-
-        //}
+        public bool UpdateCustomerInfo(Customer customer, Customer updatedCustomer)
+        {
+            if(customer.FirstName != null)
+            {
+                customer.FirstName = updatedCustomer.FirstName;
+                customer.LastName = updatedCustomer.LastName;
+                customer.TypeOfCustomer = updatedCustomer.TypeOfCustomer;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         //DELETE
-        public bool DeleteMenuItem(Customer customer)
+        public bool DeleteCustomer(Customer customer)
         {
             bool success = _customerDirectory.Remove(customer);
             return success;

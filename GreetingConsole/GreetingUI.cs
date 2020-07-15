@@ -15,6 +15,7 @@ namespace GreetingConsole
 
         public void Run()
         {
+            SeedCustomerInfo();
             Menu();
         }
 
@@ -40,13 +41,13 @@ namespace GreetingConsole
                         SeeAllCustomers();
                         break;
                     case "2":
-                        //AddCustomer();
+                        AddCustomer();
                         break;     
                     case "3":
                         //UpdateCustomerInfo();
                         break;
                     case "4":
-                        //DeleteCustomer();
+                        DeleteCustomer();
                         break;
                     case "5":
                         continueToRun = false;
@@ -64,7 +65,7 @@ namespace GreetingConsole
         {
             Console.Clear();
             List<Customer> customers = _customerRepo.GetAllCustomers();
-            Console.WriteLine("FirstName                    LastName                     Type                             Email");
+            Console.WriteLine("FirstName   LastName       Type                Email");
 
             foreach (Customer customer in customers)
             {
@@ -73,7 +74,70 @@ namespace GreetingConsole
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
+        private void AddCustomer()
+        {
+            Console.Clear();
+            var customer = new Customer();
 
+            Console.WriteLine("Enter your first name:");
+            customer.FirstName = Console.ReadLine();
+            Console.WriteLine("Enter your last name:");
+            customer.LastName = Console.ReadLine();
+
+            Console.WriteLine("Select a customer status: \n" +
+                "1.) Potential\n" +
+                "2.) Current\n" +
+                "3.) Past");
+            string customerStatusString = Console.ReadLine();
+            switch (customerStatusString)
+            {
+                case "1":
+                    customer.TypeOfCustomer = CustomerType.Potential;
+                    break;
+                case "2":
+                    customer.TypeOfCustomer = CustomerType.Current;
+                    break;
+                case "3":
+                    customer.TypeOfCustomer = CustomerType.Past;
+                    break;
+            }
+
+            _customerRepo.AddCustomer(customer);
+        }
+        private void DeleteCustomer()
+        {
+            Console.Clear();
+            Console.WriteLine("Which customer would you like to remove?");
+            List<Customer> customers = _customerRepo.GetAllCustomers();
+
+            int count = 0;
+            foreach (Customer customer in customers)
+            {
+                count++;
+                Console.WriteLine($"{count}.) {customer.FirstName} {customer.LastName}");
+            }
+
+            int targetItemId = int.Parse(Console.ReadLine());
+            int targetIndex = targetItemId - 1;
+            if (targetIndex >= 0 && targetIndex < customers.Count)
+            {
+                Customer customer = customers[targetIndex];
+                if (_customerRepo.DeleteCustomer(customer))
+                {
+                    Console.WriteLine($"{customer.FirstName} {customer.LastName} successfully deleted.");
+                }
+                else
+                {
+                    Console.WriteLine($"{customer.FirstName} {customer.LastName} was unable to be deleted. Try again.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Customer does not exist");
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
         private void SeedCustomerInfo()
         {
             var customerOne = new Customer("Parker", "Dahl", CustomerType.Current);
