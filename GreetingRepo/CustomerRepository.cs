@@ -14,7 +14,8 @@ namespace GreetingRepo
         public List<Customer> GetAllCustomers()
         {
             //return this in alphabetical order
-            return _customerDirectory;
+            List<Customer> sortedList = _customerDirectory.OrderBy(x => x.FirstName).ToList();
+            return sortedList;
         }
 
         //POST
