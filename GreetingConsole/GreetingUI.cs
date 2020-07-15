@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,7 +45,7 @@ namespace GreetingConsole
                         AddCustomer();
                         break;     
                     case "3":
-                        //UpdateCustomerInfo();
+                        UpdateCustomerInfo();
                         break;
                     case "4":
                         DeleteCustomer();
@@ -103,6 +104,63 @@ namespace GreetingConsole
             }
 
             _customerRepo.AddCustomer(customer);
+        }
+        private void UpdateCustomerInfo()
+        {
+            Console.Clear();
+            Console.WriteLine("Which customers info would you like to update?");
+            List<Customer> customers = _customerRepo.GetAllCustomers();
+
+            int count = 0;
+            foreach (Customer customer in customers)
+            {
+                count++;
+                Console.WriteLine($"{count}.) {customer.FirstName} {customer.LastName}");
+            }
+
+            int targetItemId = int.Parse(Console.ReadLine());
+            int targetIndex = targetItemId - 1;
+            if (targetIndex >= 0 && targetIndex < customers.Count)
+            {
+                Customer updatedCustomer = new Customer();
+                Customer customer = customers[targetIndex];
+                Console.WriteLine("Update First Name:");
+                updatedCustomer.FirstName = Console.ReadLine();
+                Console.WriteLine("Update Last Name:");
+                updatedCustomer.LastName = Console.ReadLine();
+                Console.WriteLine("Select a customer status: \n" +
+                "1.) Potential\n" +
+                "2.) Current\n" +
+                "3.) Past");
+                string customerStatusString = Console.ReadLine();
+                switch (customerStatusString)
+                {
+                    case "1":
+                        updatedCustomer.TypeOfCustomer = CustomerType.Potential;
+                        break;
+                    case "2":
+                        updatedCustomer.TypeOfCustomer = CustomerType.Current;
+                        break;
+                    case "3":
+                        updatedCustomer.TypeOfCustomer = CustomerType.Past;
+                        break;
+                }
+
+                if (_customerRepo.UpdateCustomerInfo(customer, updatedCustomer))
+                {
+                    Console.WriteLine("Customers info is successfully updated\n" +
+                        "Press any key to continue...");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("Customer info could not be updated");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Customer does not exist");
+            }
         }
         private void DeleteCustomer()
         {
